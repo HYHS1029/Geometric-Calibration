@@ -1,4 +1,12 @@
 # Geometric calibration
+ ## calibration 
+ 1. 將校正仿體影像讀入Callibration20170717.m → 取得校正參數(6 parameters)
+  CircularHough_Grd.m 會辨識校正仿體x-ray影像上鋼珠的座標，再藉由Callibration20170717.m計算出校正參數(x,y,z axis shift and rotation angle)
+  Callibration20170717.m 與 CircularHough_Grd.m 需放於同一資料夾內
+ 2. 
+ 
+
+================================================================
  ## image reconstruction
  1.	將檔案轉為tif檔
 →將dat_C_tiff.m和NOR.m這兩個檔案與欲轉檔的dat檔至於同一資料夾
