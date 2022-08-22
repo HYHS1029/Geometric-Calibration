@@ -1,5 +1,5 @@
 # Geometric calibration
- ## calibration 
+ *## calibration 
  1. 將校正仿體影像讀入Callibration20170717.m 
   → 輸入拍攝條件
   SOD:光源至物體的距離(source to object distance)
@@ -14,7 +14,7 @@
  
  
 ***
- ## image reconstruction
+ *## image reconstruction
  1.	將檔案轉為tif檔
 →將dat_C_tiff.m和NOR.m這兩個檔案與欲轉檔的dat檔至於同一資料夾
 →執行dat_C_tiff.m 
