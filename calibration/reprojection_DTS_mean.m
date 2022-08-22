@@ -1,34 +1,32 @@
-% Author: Moju Wu 
-% Revision: Aug. 30, 2016
-clc;clear;close all;          
 
+% clc;clear;close all;          
+clc
 det_pix_x = 1168; 
 det_pix_y = 1562; 
 pix_size = 0.019;  
-proj_n   = 41;
-step = 1;
+proj_n   = 41;  % projection 數量
+step = 1;   %角度間隔
 
 input_data_path  = 'C:\Users\user\Desktop\實驗室\Callibration_new\2017.07.10拍攝影像\YM_phantom_02\軸心位置_620\';
-% output_data_path = 'C:\Users\mojuwu\Desktop\給佳叡\';
 
 
 for proj= 0 : proj_n-1
     %%  input 6 parameters
 
-    OID =0;   %(mm)
+    OID = 0;   %(mm)
     SOD = 347;  %(mm)
     x_shift= 0;  %(mm)                      
     y_shift= 0;  %(mm)   
     eta = 0   *pi/180;
     phi = 0   *pi/180;
-     theta = (-20 + (proj*step))  *pi/180;%由左至右
-%     theta = (-59 + (proj*step))  *pi/180;%由右至左
+    theta = (-20 + (proj*step))  *pi/180;  % 掃描角度
 
     %% calculate the rotated positions
+    pos_S1=pos_S*0.019;
     SID = OID+SOD; 
     value_zero = 0;
     
-    [Sa,Sb,Sc] = rot (0, 0, -SOD, theta, phi, eta);
+    [Sa,Sb,Sc] = rot (x_mean, y_mean, -SOD-z_mean, theta, phi, eta);
     
     a=zeros(det_pix_y*det_pix_x,1);
     b=a;
@@ -53,13 +51,8 @@ for proj= 0 : proj_n-1
     end
     
     reprojected_projection = zeros(det_pix_y,det_pix_x);
-    input_proj_data = imread([input_data_path,'\',sprintf('%d',proj),'.tif']);
-    
-    if size(input_proj_data,3)~=1
-    input_proj_data=single(rgb2gray(input_proj_data));
-    end
-    ori_proj_data = double(input_proj_data);
-
+    input_proj_data = imread([input_data_path,sprintf('%d',proj),'.tif']);
+    ori_proj_data = double(rgb2gray(input_proj_data));
 %     fid  = fopen([input_data_path,sprintf('%d',proj),'.raw'],'r');
 %     ori_proj_data = fread(fid,'uint16');
 %     ori_proj_data =reshape(ori_proj_data, [det_pix_x,det_pix_y]);
