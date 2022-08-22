@@ -12,6 +12,7 @@
   Callibration20170717.m 與 CircularHough_Grd.m 需放於同一資料夾內
  2. 取得校正參數後，使用reprojection_DTS_single.m 對拍攝的影像進行reprojection，即完成校正，可接著進行影像重建
  
+ 
 ***
  ## image reconstruction
  1.	將檔案轉為tif檔
